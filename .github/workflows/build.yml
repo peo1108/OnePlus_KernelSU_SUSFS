@@ -99,9 +99,9 @@ jobs:
           echo "Using branch for SUSFS: $SUSFS_BRANCH"
           
           # Clone repositories using the branch names
-          git clone https://github.com/TheWildJames/AnyKernel3.git -b "$ANYKERNEL_BRANCH"
+          git clone https://github.com/peo1108/AnyKernel3.git -b "$ANYKERNEL_BRANCH"
           git clone https://gitlab.com/simonpunk/susfs4ksu.git -b "$SUSFS_BRANCH"
-          git clone https://github.com/TheWildJames/kernel_patches.git
+          git clone https://github.com/peo1108/kernel_patches.git
 
       - name: Initialize and Sync Kernel Source
         run: |
@@ -125,9 +125,9 @@ jobs:
           echo "Adding KernelSU Next..."
           
           if [ "${{ inputs.ksun_branch }}" == "stable" ]; then
-            curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -
+            curl -LSs "https://raw.githubusercontent.com/peo1108/KernelSU-Next/next/kernel/setup.sh" | bash -
           else
-            curl -LSs "https://raw.githubusercontent.com/KernelSU-Next/KernelSU-Next/next/kernel/setup.sh" | bash -s ${{ inputs.ksun_branch }}
+            curl -LSs "https://raw.githubusercontent.com/peo1108/KernelSU-Next/next/kernel/setup.sh" | bash - ${{ inputs.ksun_branch }}
           fi
           
           git submodule update --init --recursive
@@ -264,9 +264,9 @@ jobs:
           
           # Run sed commands for modifications
           sed -i 's/check_defconfig//' ./common/build.config.gki
-          sed -i '$s|echo "\$res"|echo "\$res-Wild"|' ./common/scripts/setlocalversion
-          sed -i '$s|echo "\$res"|echo "\$res-Wild"|' ./msm-kernel/scripts/setlocalversion
-          sed -i '$s|echo "\$res"|echo "\$res-Wild"|' ./external/dtc/scripts/setlocalversion
+          sed -i '$s|echo "\$res"|echo "\$res-Tea"|' ./common/scripts/setlocalversion
+          sed -i '$s|echo "\$res"|echo "\$res-Tea"|' ./msm-kernel/scripts/setlocalversion
+          sed -i '$s|echo "\$res"|echo "\$res-Tea"|' ./external/dtc/scripts/setlocalversion
           sed -i "/stable_scmversion_cmd/s/-maybe-dirty//g" ./build/kernel/kleaf/impl/stamp.bzl || echo "No stamp.bzl!"
           sed -i 's/-dirty//' ./common/scripts/setlocalversion
           sed -i 's/-dirty//' ./msm-kernel/scripts/setlocalversion
