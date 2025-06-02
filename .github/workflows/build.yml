@@ -127,7 +127,7 @@ jobs:
           if [ "${{ inputs.ksun_branch }}" == "stable" ]; then
             curl -LSs "https://raw.githubusercontent.com/peo1108/KernelSU-Next/next/kernel/setup.sh" | bash -
           else
-            curl -LSs "https://raw.githubusercontent.com/peo1108/KernelSU-Next/next/kernel/setup.sh" | bash - ${{ inputs.ksun_branch }}
+            curl -LSs "https://raw.githubusercontent.com/peo1108/KernelSU-Next/next/kernel/setup.sh" | bash -s ${{ inputs.ksun_branch }}
           fi
           
           git submodule update --init --recursive
